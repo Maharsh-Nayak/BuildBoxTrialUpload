@@ -8,7 +8,11 @@ const backendRandomValue = process.env.BACKEND_RANDOM_VALUE || 'not-set';
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: '*', // Allows all domains
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Explicitly list allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allows custom headers
+}));
 
 // Health check route
 app.get('/health', (req, res) => {
