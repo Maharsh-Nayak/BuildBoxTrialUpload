@@ -42,6 +42,11 @@ app.get('/api/random', (req, res) => {
   });
 });
 
+app.use((req, res, next) => {
+  console.log("Container received : ${req.method} ${req.url}");
+  next();
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   console.log(`Health check: http://localhost:${PORT}/health`);
